@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #6a0dad, #8e44ad);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        form {
+            background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            color: #6a0dad; /* Roxo */
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #333;
+            font-weight: 600;
+        }
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 5px 0 15px;
+            border: 2px solid #6a0dad;
+            border-radius: 6px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #8e44ad; /* Roxo mais claro */
+            outline: none;
+        }
+        input[type="submit"] {
+            background-color: #6a0dad; /* Roxo */
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 700;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #5a0a8c; /* Roxo escuro */
+        }
+        p {
+            color: #333;
+            margin-top: 15px;
+        }
+        p a {
+            color: #6a0dad; /* Roxo */
+            text-decoration: none;
+            font-weight: 600;
+        }
+        p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <form action="/login" method="post" name="logar" id="logar">
+        <h2>LOGIN - Acessar o Sistema</h2>
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" id="email" required/>
+        
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" id="senha" required/>
+        
+        <input type="submit" id="entrar" name="entrar" value="ENTRAR">
+        <p>Não possui Login? <a href="/cadastrar">Cadastre-se</a></p>
+    </form>
+</body>
+</html>

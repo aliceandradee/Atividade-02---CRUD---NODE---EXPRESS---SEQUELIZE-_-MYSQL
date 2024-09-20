@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Broadway&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0; /* Cor de fundo suave */
+            font-family: 'Arial', sans-serif;
+        }
+        form {
+            background-color: #ffffff; /* Fundo branco do formulário */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 400px; /* Largura fixa do formulário */
+            text-align: left; /* Alinhamento à esquerda */
+        }
+        h2 {
+            color: #6a1b9a; /* Roxo para o título */
+            margin-bottom: 20px;
+            text-align: center; /* Centraliza o título */
+            font-family: 'Broadway', sans-serif; /* Fonte Broadway */
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            color: #d81b60; /* Rosa para os rótulos */
+            font-weight: bold; /* Destaca os rótulos */
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 12px;
+            margin: 5px 0 20px;
+            border: 2px solid #d81b60; /* Rosa nas bordas */
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px; /* Aumenta o tamanho da fonte */
+        }
+        button {
+            background-color: #6a1b9a; /* Roxo para os botões */
+            color: white;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px; /* Aumenta o tamanho da fonte do botão */
+            margin-right: 10px; /* Espaço entre os botões */
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #8e24aa; /* Roxo mais claro ao passar o mouse */
+            transform: scale(1.05); /* Efeito de zoom */
+        }
+        a {
+            text-decoration: none;
+            color: #6a1b9a; /* Roxo para links */
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center; /* Centraliza os botões */
+            margin-top: 20px; /* Espaço acima dos botões */
+        }
+    </style>
+</head>
+<body>
+    <form action="/editar-perfil" method="POST" id="editUser" name="editUser">
+        <h2>Editar Perfil</h2>
+
+        <label>Nome:</label>
+        <input type="text" name="nome" value="<%= user.nome %>" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" value="<%= user.email %>" required>
+
+        <label>Nova Senha:</label>
+        <input type="password" name="senha" id="senha" required>
+
+        <label>Confirmar Senha:</label>
+        <input type="password" name="confSenha" id="confSenha" required>
+
+        <label>Gênero Favorito:</label>
+        <select name="genero_fav" id="genero_fav" required>
+            <option value=""> -- Selecione --</option>
+            <option value="fantasia" <%= user.genero_fav === 'fantasia' ? 'selected' : '' %>>Fantasia</option>
+            <option value="ficcao-cientifica" <%= user.genero_fav === 'ficcao-cientifica' ? 'selected' : '' %>>Ficção Científica</option>
+            <option value="romance" <%= user.genero_fav === 'romance' ? 'selected' : '' %>>Romance</option>
+            <option value="aventura" <%= user.genero_fav === 'aventura' ? 'selected' : '' %>>Aventura</option>
+            <option value="mistério" <%= user.genero_fav === 'mistério' ? 'selected' : '' %>>Mistério</option>
+            <option value="terror" <%= user.genero_fav === 'terror' ? 'selected' : '' %>>Terror</option>
+            <option value="biografia" <%= user.genero_fav === 'biografia' ? 'selected' : '' %>>Biografia</option>
+            <option value="autoajuda" <%= user.genero_fav === 'autoajuda' ? 'selected' : '' %>>Autoajuda</option>
+            <option value="historia" <%= user.genero_fav === 'historia' ? 'selected' : '' %>>História</option>
+            <option value="drama" <%= user.genero_fav === "drama" ? 'selected' : '' %>>Drama</option>
+            <option value="poesia" <%= user.genero_fav === 'poesia' ? 'selected' : '' %>>Poesia</option>
+            <option value="classicos" <%= user.genero_fav === 'classicos' ? 'selected' : '' %>>Clássicos</option>
+            <option value="romance-policial" <%= user.genero_fav === 'romance-policial' ? 'selected' : '' %>>Romance Policial</option>
+            <option value="juvenil" <%= user.genero_fav === 'juvenil' ? 'selected' : '' %>>Juvenil</option>
+            <option value="literatura-infantojuvenil" <%= user.genero_fav === 'literatura-infantojuvenil' ? 'selected' : '' %>>Literatura Infantojuvenil</option>
+        </select>
+
+        <div class="button-container">
+            <button type="submit"><font color="white"> Salvar Alterações </font></button>
+            <button><a href="/perfil"><font color="white"> Voltar ao Perfil </font></a></button>
+        </div>
+    </form>
+</body>
+<script src="/js/scriptEditPerfil.js"></script>
+</html>

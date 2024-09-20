@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros Cadastrados</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #6a0dad; /* Roxo */
+            margin: 20px 0;
+            font-family: 'Broadway', cursive;
+            text-align: center;
+        }
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 90%;
+            text-align: left;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid #6a0dad; /* Roxo */
+            padding: 12px;
+            transition: background-color 0.3s;
+        }
+        th {
+            background-color: #6a0dad; /* Roxo */
+            color: white;
+        }
+        td {
+            background-color: #fff;
+        }
+        td:hover {
+            background-color: #f9f9f9; /* Efeito ao passar o mouse */
+        }
+        img {
+            width: 100px;
+            height: auto;
+            border-radius: 4px;
+        }
+        a {
+            color: #e57373; /* Vermelho */
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            display: block;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        button {
+            background-color: #e57373; /* Vermelho */
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #d32f2f; /* Vermelho escuro */
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Livros Cadastrados</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Gênero</th>
+                <th>Descrição</th>
+                <th>Data de Lançamento</th>
+                <th>Imagem</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% livros.forEach(livro => { %>
+                <tr>
+                    <td><%= livro.id_livro %></td>
+                    <td><%= livro.titulo %></td>
+                    <td><%= livro.autor %></td>
+                    <td><%= livro.genero %></td>
+                    <td><%= livro.descricao %></td>
+                    <td><%= livro.data_lanc %></td>
+                    <td>
+                        <% if (livro.imagem) { %>
+                            <img src="/uploads/<%= livro.imagem %>" alt="Imagem do Livro">
+                        <% } else { %>
+                            Sem imagem
+                        <% } %>
+                    </td>
+                    <td class="action-buttons">
+                      <a href="/edit-livro/<%= livro.id_livro %>" style="width: 100%; text-align: center; display: block;">Editar</a>
+                        <form action="/delete-livro/<%= livro.id_livro %>" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
+                            <button type="submit" id="excluir" name="excluir">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <div>
+        <a href="/dashboard">Voltar</a>
+    </div>
+    <script src="/js/scriptDelLivro.js"></script>
+</body>
+</html>

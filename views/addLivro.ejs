@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Livro</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #6a0dad; /* Roxo */
+            font-family: 'Broadway', cursive;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            background-color: #6a0dad; /* Roxo */
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            background-color: #e9b7eb; /* Rosa claro */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="date"],
+        textarea,
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #6a0dad; /* Roxo */
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        textarea:focus,
+        input[type="file"]:focus,
+        select:focus {
+            border-color: #c71585; /* Rosa */
+            outline: none;
+        }
+        button {
+            background-color: #6a0dad; /* Roxo */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%; /* Botão ocupa toda a largura */
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #5b0c9a; /* Roxo escuro */
+        }
+        p {
+            margin-top: 10px;
+        }
+        a {
+            color: #6a0dad; /* Roxo */
+            text-decoration: none;
+            font-weight: bold;
+            padding-top: 25px;
+            display: block;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cadastrar Livro</h1>
+    <form action="/add-livro" method="POST" enctype="multipart/form-data">
+        <label><strong>Título:</strong></label>
+        <input type="text" name="titulo" required>
+
+        <label><strong>Autor:</strong></label>
+        <input type="text" name="autor" required>
+
+        <label><strong>Gênero:</strong></label>
+        <select name="genero" id="genero" required>
+            <option value="" selected="selected">-- Selecione --</option>
+            <option value="fantasia">Fantasia</option>
+            <option value="ficcao-cientifica">Ficção Científica</option>
+            <option value="romance">Romance</option>
+            <option value="aventura">Aventura</option>
+            <option value="mistério">Mistério</option>
+            <option value="terror">Terror</option>
+            <option value="biografia">Biografia</option>
+            <option value="autoajuda">Autoajuda</option>
+            <option value="historia">História</option>
+            <option value="drama">Drama</option>
+            <option value="poesia">Poesia</option>
+            <option value="classicos">Clássicos</option>
+            <option value="romance-policial">Romance Policial</option>
+            <option value="juvenil">Juvenil</option>
+            <option value="literatura-infantojuvenil">Literatura Infantojuvenil</option>
+        </select>
+
+        <label><strong>Descrição:</strong></label>
+        <textarea name="descricao" required></textarea>
+
+        <label><strong>Data de Lançamento:</strong></label>
+        <input type="date" name="data_lanc" required>
+
+        <label><strong>Imagem do Livro:</strong></label>
+        <input type="file" name="imagem" accept="image/*">
+
+        <button type="submit" id="cadastrarLivro" name="cadastrarLivro">Cadastrar Livro</button>
+    </form>
+    <p><a href="/dashboard">Voltar</a></p>
+    <script src="/js/scriptCadLivro.js"></script>
+</body>
+</html>

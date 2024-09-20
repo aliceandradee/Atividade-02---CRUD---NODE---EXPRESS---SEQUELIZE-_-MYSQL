@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+        }
+        h1 {
+            font-family: 'Broadway', cursive;
+            color: #6a0dad; /* Roxo */
+            margin: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid #6a0dad;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #c71585; /* Rosa */
+            margin: 20px 0;
+            font-size: 1.5em;
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            color: white;
+            background-color: #6a0dad; /* Roxo */
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .button:hover {
+            background-color: #5b0c9a; /* Roxo escuro */
+        }
+        .edit-button, .delete-button {
+            padding: 10px 15px;
+            background-color: #ff69b4; /* Rosa claro */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 5px 0;
+            width: 100px; /* Tamanho fixo para os botões */
+            text-align: center;
+            font-weight: bold;
+        }
+        .edit-button:hover {
+            background-color: #ff1493; /* Rosa mais escuro */
+        }
+        .delete-button {
+            background-color: #e57373; /* Vermelho */
+        }
+        .delete-button:hover {
+            background-color: #ef5350; /* Vermelho mais escuro */
+        }
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 80%;
+            text-align: left;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid #6a0dad; /* Roxo */
+            padding: 12px;
+        }
+        th {
+            background-color: #6a0dad; /* Roxo */
+            color: white;
+        }
+        td {
+            background-color: white;
+            transition: background-color 0.3s;
+        }
+        tr:hover td {
+            background-color: #f1e3f1; /* Cor de destaque ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <h1>Painel de Administração</h1>
+
+    <a href="/add-livro" class="button">Cadastrar Livro</a>
+    <a href="/listarLivros" class="button">Exibir Livros</a>
+
+    <h2>Usuários Cadastrados</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Gênero Favorito</th>
+            <th>Ações</th>
+            <th>Excluir ou Editar</th>
+        </tr>
+        <% users.forEach(user => { %>
+        <tr>
+            <td><%= user.id_usuario %></td>
+            <td><%= user.nome %></td>
+            <td><%= user.email %></td>
+            <td><%= user.genero_fav %></td>
+            <td>
+                <% if (user.acesso === 'admin') { %>
+                    <form action="/tornar-user/<%= user.id_usuario %>" method="POST" style="display:inline;">
+                        <button type="submit" class="button">Tornar Usuário Comum</button>
+                    </form>
+                <% } else { %>
+                    <form action="/tornar-admin/<%= user.id_usuario %>" method="POST" style="display:inline;">
+                        <button type="submit" class="button">Tornar Admin</button>
+                    </form>
+                <% } %>
+            </td>
+            <td> 
+                <a href="/edit/<%= user.id_usuario %>" class="edit-button">Editar</a>
+                <form action="/delete/<%= user.id_usuario %>" method="post" style="display: inline;" onsubmit="return confirmDelete()">
+                    <button type="submit" class="delete-button">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        <% }); %>
+    </table>
+    <br/>
+    <div>
+        <a href="/logout" class="button logout-button">Logout</a>
+    </div>
+    <script src="/js/scriptDel.js"></script>
+    <script src="/js/scriptAcesso.js"></script>
+</body>
+</html>
